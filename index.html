@@ -15,7 +15,7 @@
     --bg: #0b0f14; --bg-deep: #080c10;
     --surface: #121820; --surface2: #0e141b; --raise: #161f2a;
     --line: rgba(148,178,214,.13); --line2: rgba(148,178,214,.24);
-    --ink: #e8eef4; --ink60: #9fb0c7; --ink40: #5f7189;
+    --ink: #e8eef4; --ink60: #9fb0c7; --ink40: #90a4b8;
     --teal: #18a4c2; --teal-deep: #0e7490; --teal-ink: #04141a; --teal-soft: rgba(24,164,194,.12);
     --ok: #34c98e; --ok-soft: rgba(52,201,142,.11);
     --warn: #f5b544; --warn-soft: rgba(245,181,68,.11);
@@ -43,7 +43,7 @@
   .navlinks a { color: var(--ink60); text-decoration: none; font-size: 13.5px; padding: 7px 12px; border-radius: 8px; }
   .navlinks a:hover { color: var(--ink); background: var(--raise); }
   .cta { display: inline-block; background: var(--teal-deep); border: 1px solid var(--teal-deep); color: #fff; text-decoration: none; font-weight: 600; font-size: 13.5px; border-radius: 9px; padding: 8px 16px; }
-  .cta:hover { background: #1290ac; }
+  .cta:hover { background: #0c6880; }
 
   /* ---------- hero ---------- */
   .hero { padding: 84px 0 64px; display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,.85fr); gap: 48px; align-items: center; }
@@ -55,7 +55,7 @@
   .heroctas { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
   .cta.big { padding: 12px 22px; font-size: 15px; border-radius: 10px; }
   .cta.ghost { background: transparent; border: 1px solid var(--line2); color: var(--ink); }
-  .cta.ghost:hover { border-color: var(--teal); color: var(--teal); }
+  .cta.ghost:hover { background: transparent; border-color: var(--teal); color: var(--teal); }
 
   /* ladder visual */
   .ladderviz { position: relative; padding: 8px 0 8px 30px; }
@@ -109,11 +109,11 @@
   /* phone mock (families) */
   .phone { border: 1px solid var(--line2); border-radius: 22px; background: var(--surface2); overflow: hidden; }
   .phead { display: flex; gap: 9px; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--line); }
-  .pava { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(160deg, var(--teal), var(--teal-deep)); display: grid; place-items: center; font-size: 10.5px; font-weight: 800; color: var(--teal-ink); }
+  .pava { width: 28px; height: 28px; border-radius: 50%; background: var(--teal-deep); display: grid; place-items: center; font-size: 10.5px; font-weight: 800; color: #fff; }
   .phead b { font-size: 13px; display: block; } .phead span { font-size: 10px; color: var(--ink40); }
   .pbody { padding: 12px; display: flex; flex-direction: column; gap: 8px; min-height: 300px; }
   .bubble { max-width: 88%; border-radius: 12px; padding: 8px 11px; font-size: 12.5px; line-height: 1.5; }
-  .bubble .bt { display: block; text-align: right; font-size: 9px; color: var(--ink40); font-family: var(--mono); margin-top: 3px; }
+  .bubble .bt { display: block; text-align: right; font-size: 9px; color: var(--ink); font-family: var(--mono); margin-top: 3px; }
   .bot { align-self: flex-start; background: #223341; border: 1px solid #2e4254; border-top-left-radius: 4px; }
   .bot.alert { background: rgba(244,87,77,.12); border-color: rgba(244,87,77,.4); }
   .bot.good { background: rgba(52,201,142,.1); border-color: rgba(52,201,142,.35); }
@@ -164,9 +164,10 @@
   .login-card label { display: block; font-size: 12px; color: var(--ink60); margin: 10px 0 4px; }
   .login-card input { width: 100%; padding: 10px 12px; border-radius: 9px; border: 1px solid var(--line); background: var(--bg-deep); color: var(--ink); font: inherit; font-size: 14px; }
   .login-card input:focus { outline: 2px solid var(--teal); outline-offset: 1px; }
+  a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
   .btn { margin-top: 14px; width: 100%; min-height: 44px; border: none; border-radius: 9px; cursor: pointer; background: var(--teal-deep); color: #fff; font: inherit; font-size: 14.5px; font-weight: 600; }
-  .btn:hover { background: #1290ac; }
-  .btn:disabled { opacity: .5; cursor: wait; }
+  .btn:hover { background: #0c6880; }
+  .btn:disabled { background: #084556; color: #fff; cursor: wait; }
   .msg { margin-top: 10px; font-size: 13px; color: var(--warn); min-height: 18px; }
   .msg.ok { color: var(--ok); }
 
@@ -180,6 +181,10 @@
     .hero { grid-template-columns: 1fr; padding-top: 56px; }
     .trio, .aud, .chans, .trust, .demo-panel { grid-template-columns: 1fr; }
     .navlinks { display: none; }
+    .navwrap { flex-wrap: wrap; }
+    .ptable { table-layout: fixed; width: 100%; }
+    .ptable th, .ptable td { overflow-wrap: break-word; }
+    .price { white-space: normal; }
   }
 </style>
 </head>
@@ -223,7 +228,7 @@
       <div class="lv"><div class="t">Cue</div><div class="s">stillness noticed · confidence scored</div></div>
       <div class="lv stop"><div class="t">Voice check-in · answered</div>
         <span class="quote">"I'm fine, thanks - just resting."</span>
-        <span class="qnote">most incidents stop here · nobody is paged</span></div>
+        <span class="qnote">a positive reply stops here · nobody is paged</span></div>
       <div class="lv"><div class="t">Page caretakers</div><div class="s">Slack · Teams · WhatsApp · Telegram</div></div>
       <div class="lv"><div class="t">Await acknowledgment</div><div class="s">one tap in chat stops the climb</div></div>
       <div class="lv"><div class="t">Escalate</div><div class="s">next contact, then a real phone call</div></div>
